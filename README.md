@@ -1,16 +1,31 @@
-# React + Vite
+# PYP Software
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Landing institucional de PYP Software, orientada a presentar servicios de desarrollo de software a medida, automatización y sistemas de gestión para empresas.
 
-Currently, two official plugins are available:
+## Desarrollo local
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
+## Verificaciones
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm run lint
+npm run build
+```
 
-## Expanding the ESLint configuration
+## Configuración de contacto
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+WhatsApp, Instagram y email se centralizan en `src/config/contact.js`.
+
+- `WHATSAPP_NUMBER`: número internacional, sólo dígitos.
+- `INSTAGRAM_HANDLE`: nombre de usuario de Instagram.
+- `CONTACT_EMAIL`: dirección de contacto.
+
+Mientras no se configure un número, los enlaces de WhatsApp abren el selector de conversación con el mensaje precargado. El formulario realiza validación frontend, pero no envía datos hasta que se conecte un backend real.
+
+## Identidad visual
+
+La marca temporal se encuentra en `src/components/Brand.jsx` y el favicon en `public/favicon.svg`. Ambos pueden reemplazarse cuando esté disponible el logo oficial.

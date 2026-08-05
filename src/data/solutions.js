@@ -1,0 +1,15 @@
+export const solutions = [
+  'CRM',
+  'Gestión de clientes',
+  'Gestión de stock',
+  'Sistemas para talleres',
+  'Sistemas gastronómicos',
+  'Gestión de reservas',
+  'Facturación',
+  'Control de pagos',
+  'Gestión documental',
+  'Alertas y vencimientos',
+  'Dashboards',
+  'Reportes empresariales',
+  'Automatización administrativa',
+]
