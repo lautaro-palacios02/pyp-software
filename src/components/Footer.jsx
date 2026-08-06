@@ -1,6 +1,14 @@
-import { Camera, Mail, MessageCircle } from 'lucide-react'
+import { Camera, Mail, MessageCircle, Phone } from 'lucide-react'
 import Brand from './Brand'
-import { CONTACT_EMAIL, getWhatsAppUrl, INSTAGRAM_URL } from '../config/contact'
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+  getPhoneUrl,
+  getWhatsAppUrl,
+  INSTAGRAM_URL,
+  isPhoneConfigured,
+  isWhatsAppConfigured,
+} from '../config/contact'
 
 const footerColumns = [
   {
@@ -49,23 +57,32 @@ function Footer() {
             <h2 className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-300">Contacto</h2>
             <ul className="mt-5 space-y-3">
               <li>
-                <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className="footer-contact-link">
+                {isPhoneConfigured ? (
+                  <a href={getPhoneUrl()} className="footer-contact-link">
+                    <Phone size={14} /> {CONTACT_PHONE}
+                  </a>
+                ) : (
+                  <span className="footer-contact-link">
+                    <Phone size={14} /> {CONTACT_PHONE}
+                  </span>
+                )}
+              </li>
+              <li>
+                <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="footer-contact-link">
                   <Camera size={14} /> Instagram
                 </a>
               </li>
-              <li>
-                <a href={getWhatsAppUrl()} target="_blank" rel="noreferrer" className="footer-contact-link">
-                  <MessageCircle size={14} /> WhatsApp
-                </a>
-              </li>
-              <li>
-                {CONTACT_EMAIL ? (
-                  <a href={`mailto:${CONTACT_EMAIL}`} className="footer-contact-link">
-                    <Mail size={14} /> Email
+              {isWhatsAppConfigured && (
+                <li>
+                  <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer" className="footer-contact-link">
+                    <MessageCircle size={14} /> WhatsApp
                   </a>
-                ) : (
-                  <span className="footer-contact-link cursor-default opacity-60"><Mail size={14} /> Email próximamente</span>
-                )}
+                </li>
+              )}
+              <li>
+                <a href={`mailto:${CONTACT_EMAIL}`} className="footer-contact-link">
+                  <Mail size={14} /> Email
+                </a>
               </li>
             </ul>
           </div>

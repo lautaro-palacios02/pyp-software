@@ -18,13 +18,26 @@ npm run build
 
 ## Configuración de contacto
 
-WhatsApp, Instagram y email se centralizan en `src/config/contact.js`.
+El teléfono, WhatsApp, Instagram y el email público se centralizan en `src/config/contact.js`.
 
+- `CONTACT_PHONE`: número visible, con código de país y área.
 - `WHATSAPP_NUMBER`: número internacional, sólo dígitos.
 - `INSTAGRAM_HANDLE`: nombre de usuario de Instagram.
 - `CONTACT_EMAIL`: dirección de contacto.
 
-Mientras no se configure un número, los enlaces de WhatsApp abren el selector de conversación con el mensaje precargado. El formulario realiza validación frontend, pero no envía datos hasta que se conecte un backend real.
+Mientras no se configure un número válido, los accesos públicos de WhatsApp permanecen ocultos y el botón del formulario queda deshabilitado.
+
+## Envío del formulario
+
+La función serverless `api/contact.js` envía las consultas con Resend. Para probarla con un entorno compatible con las funciones de Vercel, instalá Vercel CLI y ejecutá `vercel dev`.
+
+Copiá `.env.example` como `.env.local` y completá únicamente en tu entorno local:
+
+- `RESEND_API_KEY`
+- `CONTACT_EMAIL` (actualmente `argroup.pyp@gmail.com`)
+- `CONTACT_FROM_EMAIL`
+
+Nunca uses una variable `VITE_*` para la API key. En producción, configurá estas variables desde los ajustes del proyecto en Vercel.
 
 ## Identidad visual
 

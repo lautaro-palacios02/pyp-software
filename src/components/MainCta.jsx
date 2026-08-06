@@ -1,5 +1,5 @@
 import { ArrowRight, MessageCircle } from 'lucide-react'
-import { getWhatsAppUrl } from '../config/contact'
+import { getWhatsAppUrl, isWhatsAppConfigured } from '../config/contact'
 
 function MainCta() {
   return (
@@ -19,15 +19,17 @@ function MainCta() {
               Quiero hablar de mi proyecto
               <ArrowRight size={17} aria-hidden="true" />
             </a>
-            <a
-              href={getWhatsAppUrl()}
-              target="_blank"
-              rel="noreferrer"
-              className="button-secondary justify-center px-5 py-3.5"
-            >
-              <MessageCircle size={17} aria-hidden="true" />
-              Contactar por WhatsApp
-            </a>
+            {isWhatsAppConfigured && (
+              <a
+                href={getWhatsAppUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button-secondary justify-center px-5 py-3.5"
+              >
+                <MessageCircle size={17} aria-hidden="true" />
+                Contactar por WhatsApp
+              </a>
+            )}
           </div>
         </div>
       </div>
