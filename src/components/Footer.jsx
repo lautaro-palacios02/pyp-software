@@ -56,17 +56,13 @@ function Footer() {
           <div>
             <h2 className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-300">Contacto</h2>
             <ul className="mt-5 space-y-3">
-              <li>
-                {isPhoneConfigured ? (
+              {isPhoneConfigured && (
+                <li>
                   <a href={getPhoneUrl()} className="footer-contact-link">
                     <Phone size={14} /> {CONTACT_PHONE}
                   </a>
-                ) : (
-                  <span className="footer-contact-link">
-                    <Phone size={14} /> {CONTACT_PHONE}
-                  </span>
-                )}
-              </li>
+                </li>
+              )}
               <li>
                 <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="footer-contact-link">
                   <Camera size={14} /> Instagram

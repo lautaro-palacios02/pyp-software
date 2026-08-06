@@ -152,7 +152,6 @@ function Contact() {
   }
 
   const isLoading = status === 'loading'
-  const PhoneContainer = isPhoneConfigured ? 'a' : 'div'
 
   return (
     <section id="contacto" className="section-shell scroll-mt-16 border-t border-white/[0.05] bg-[#080b10]">
@@ -165,19 +164,16 @@ function Contact() {
           />
 
           <div className="mt-9 space-y-3">
-            <PhoneContainer
-              {...(isPhoneConfigured ? { href: getPhoneUrl() } : {})}
-              className="contact-link group"
-            >
-              <span className="contact-icon"><Phone size={18} /></span>
-              <span>
-                <span className="block text-xs text-slate-600">Teléfono</span>
-                <span className="mt-1 block text-sm text-slate-300">{CONTACT_PHONE}</span>
-              </span>
-              {isPhoneConfigured && (
+            {isPhoneConfigured && (
+              <a href={getPhoneUrl()} className="contact-link group">
+                <span className="contact-icon"><Phone size={18} /></span>
+                <span>
+                  <span className="block text-xs text-slate-600">Teléfono</span>
+                  <span className="mt-1 block text-sm text-slate-300">{CONTACT_PHONE}</span>
+                </span>
                 <ArrowUpRight size={15} className="ml-auto text-slate-700 transition-colors group-hover:text-blue-400" />
-              )}
-            </PhoneContainer>
+              </a>
+            )}
             <a href={`mailto:${CONTACT_EMAIL}`} className="contact-link group">
               <span className="contact-icon"><Mail size={18} /></span>
               <span>
@@ -267,16 +263,17 @@ function Contact() {
           <div className="mt-6 flex flex-col gap-4">
             <p className="text-[10px] leading-4 text-slate-600">Los campos marcados con * son obligatorios.</p>
             <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
-              <button
-                type="button"
-                onClick={handleWhatsApp}
-                disabled={!isWhatsAppConfigured || isLoading}
-                title={!isWhatsAppConfigured ? 'Disponible cuando se configure el número de WhatsApp' : undefined}
-                className="button-secondary justify-center px-5 py-3.5 disabled:cursor-not-allowed disabled:opacity-45"
-              >
-                <MessageCircle size={16} aria-hidden="true" />
-                Consultar por WhatsApp
-              </button>
+              {isWhatsAppConfigured && (
+                <button
+                  type="button"
+                  onClick={handleWhatsApp}
+                  disabled={isLoading}
+                  className="button-secondary justify-center px-5 py-3.5 disabled:cursor-not-allowed disabled:opacity-45"
+                >
+                  <MessageCircle size={16} aria-hidden="true" />
+                  Consultar por WhatsApp
+                </button>
+              )}
               <button type="submit" disabled={isLoading} className="button-primary min-w-40 justify-center px-5 py-3.5 disabled:cursor-wait disabled:opacity-70">
                 {isLoading ? (
                   <><LoaderCircle size={16} className="animate-spin" aria-hidden="true" /> Enviando...</>
@@ -297,7 +294,10 @@ function Contact() {
             {status === 'error' && (
               <div className="flex gap-3 rounded-lg border border-red-400/15 bg-red-400/[0.06] p-3.5 text-xs leading-5 text-red-300" role="alert">
                 <CircleAlert size={17} className="mt-0.5 shrink-0" aria-hidden="true" />
-                <p>No pudimos enviar tu consulta. Intentá nuevamente o contactanos por WhatsApp.</p>
+                <p>
+                  No pudimos enviar tu consulta. Intentá nuevamente
+                  {isWhatsAppConfigured ? ' o contactanos por WhatsApp.' : '.'}
+                </p>
               </div>
             )}
           </div>

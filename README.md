@@ -25,7 +25,7 @@ El teléfono, WhatsApp, Instagram y el email público se centralizan en `src/con
 - `INSTAGRAM_HANDLE`: nombre de usuario de Instagram.
 - `CONTACT_EMAIL`: dirección de contacto.
 
-Mientras no se configure un número válido, los accesos públicos de WhatsApp permanecen ocultos y el botón del formulario queda deshabilitado.
+Mientras no se configure un número válido, los accesos públicos de teléfono y WhatsApp permanecen ocultos.
 
 ## Envío del formulario
 
