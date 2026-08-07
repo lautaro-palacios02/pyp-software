@@ -24,6 +24,7 @@ const footerColumns = [
     title: 'Empresa',
     links: [
       ['Nosotros', '#nosotros'],
+      ['Equipo', '#equipo'],
       ['Proyectos', '#proyectos'],
       ['Contacto', '#contacto'],
     ],

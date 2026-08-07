@@ -9,6 +9,7 @@ import Projects from './components/Projects'
 import Technologies from './components/Technologies'
 import WhyUs from './components/WhyUs'
 import About from './components/About'
+import Team from './components/Team'
 import MainCta from './components/MainCta'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -29,6 +30,7 @@ function App() {
         <Technologies />
         <WhyUs />
         <About />
+        <Team />
         <MainCta />
         <Contact />
       </main>

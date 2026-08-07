@@ -8,6 +8,7 @@ const navLinks = [
   ['Soluciones', '#soluciones'],
   ['Proyectos', '#proyectos'],
   ['Nosotros', '#nosotros'],
+  ['Equipo', '#equipo'],
   ['Contacto', '#contacto'],
 ]
 
