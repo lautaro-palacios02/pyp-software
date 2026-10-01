@@ -36,9 +36,12 @@ export async function sendContactEmail(values, environment = process.env) {
   try {
     const transporter = nodemailer.createTransport({
       host: "smtp-relay.brevo.com",
-      port: 587,
+      port: 2525,
       secure: false,
       requireTLS: true,
+      connectionTimeout: 15_000,
+      greetingTimeout: 15_000,
+      socketTimeout: 20_000,
       auth: { user, pass },
     })
     const { html, text } = emailContent(values)
@@ -51,8 +54,10 @@ export async function sendContactEmail(values, environment = process.env) {
       text,
     })
     return { status: 200, body: { success: true, message: "Consulta enviada correctamente" } }
-  } catch {
-    console.error("No fue posible enviar una consulta mediante Brevo SMTP.")
+  } catch (error) {
+    const knownSmtpErrorCodes = new Set(["ETIMEDOUT", "ECONNECTION", "EAUTH", "ESOCKET"])
+    const code = knownSmtpErrorCodes.has(error?.code) ? error.code : "UNKNOWN"
+    console.error("No fue posible enviar una consulta mediante Brevo SMTP.", { code })
     return { status: 502, body: { success: false, message: "No se pudo enviar la consulta" } }
   }
 }

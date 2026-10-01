@@ -22,7 +22,7 @@ La regla de API debe estar antes del fallback SPA. Al ser un rewrite de mismo or
 
 ## Brevo SMTP
 
-El backend usa Nodemailer con esta configuración: host `smtp-relay.brevo.com`, puerto `587`, `secure: false` y TLS mediante STARTTLS.
+El backend usa Nodemailer con esta configuración: host `smtp-relay.brevo.com`, puerto `2525`, `secure: false` y TLS mediante STARTTLS. Se usa el puerto alternativo 2525 porque Render Free bloquea tráfico SMTP saliente por los puertos 25, 465 y 587.
 
 - `BREVO_SMTP_USER` es el SMTP login de Brevo.
 - `BREVO_SMTP_KEY` es la SMTP key de Brevo; no es una API key.
