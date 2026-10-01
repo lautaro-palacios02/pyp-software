@@ -1,5 +1,6 @@
 import { Camera, Mail, MessageCircle, Phone } from 'lucide-react'
 import Brand from './Brand'
+import { useConsent } from './privacy/ConsentProvider'
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE,
@@ -31,6 +32,7 @@ const footerColumns = [
 ]
 
 function Footer() {
+  const { openSettings } = useConsent()
   return (
     <footer className="border-t border-white/[0.07] bg-[#05070a]">
       <div className="mx-auto max-w-7xl px-5 pb-8 pt-14 sm:px-8 sm:pt-16 lg:px-10">
@@ -85,8 +87,8 @@ function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col gap-3 border-t border-white/[0.06] pt-6 text-[11px] text-slate-600 sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 PYP Software. Todos los derechos reservados.</p>
-          <p>Software · Automatización · Sistemas de gestión</p>
+          <p>© {new Date().getFullYear()} P&P Software. Todos los derechos reservados.</p>
+          <div className="flex flex-wrap gap-x-4 gap-y-2"><a href="/privacidad" className="hover:text-white">Política de Privacidad</a><a href="/cookies" className="hover:text-white">Política de Cookies</a><a href="/terminos" className="hover:text-white">Términos y Condiciones</a><button type="button" onClick={openSettings} className="hover:text-white">Configurar privacidad</button></div>
         </div>
       </div>
     </footer>

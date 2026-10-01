@@ -29,15 +29,22 @@ Mientras no se configure un número válido, los accesos públicos de teléfono 
 
 ## Envío del formulario
 
-La función serverless `api/contact.js` envía las consultas con Resend. Para probarla con un entorno compatible con las funciones de Vercel, instalá Vercel CLI y ejecutá `vercel dev`.
+En producción, el formulario se procesa mediante el Web Service de Render definido en `server/index.js`. El Static Site reescribe `/api/*` a ese servicio; por eso el frontend conserva `fetch("/api/contact")`.
 
-Copiá `.env.example` como `.env.local` y completá únicamente en tu entorno local:
+Para desarrollo local de la API:
 
-- `RESEND_API_KEY`
-- `CONTACT_EMAIL` (actualmente `argroup.pyp@gmail.com`)
+```bash
+npm run start:api
+```
+
+Configurá estas variables sólo en el Web Service o en tu entorno local:
+
+- `BREVO_SMTP_USER` (SMTP login de Brevo)
+- `BREVO_SMTP_KEY` (SMTP key de Brevo; no es una API key)
+- `CONTACT_EMAIL`
 - `CONTACT_FROM_EMAIL`
 
-Nunca uses una variable `VITE_*` para la API key. En producción, configurá estas variables desde los ajustes del proyecto en Vercel.
+Nunca uses una variable `VITE_*` para secretos. Las instrucciones de despliegue están en `docs/RENDER_CONTACT_API.md`.
 
 ## Identidad visual
 

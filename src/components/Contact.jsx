@@ -130,9 +130,18 @@ function Contact() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(values),
       })
-      const result = await response.json().catch(() => null)
+      const rawResponse = await response.text()
+      let data = null
 
-      if (!response.ok || !result?.ok) throw new Error('Contact request failed')
+      if (rawResponse) {
+        try {
+          data = JSON.parse(rawResponse)
+        } catch {
+          // A malformed response must not surface a JSON parsing error to visitors.
+        }
+      }
+
+      if (!response.ok || !data?.success) throw new Error(data?.message || 'Contact request failed')
 
       form.reset()
       setErrors({})
@@ -262,6 +271,7 @@ function Contact() {
 
           <div className="mt-6 flex flex-col gap-4">
             <p className="text-[10px] leading-4 text-slate-600">Los campos marcados con * son obligatorios.</p>
+            <p className="text-[11px] leading-5 text-slate-500">Al enviar este formulario, aceptás que utilicemos tus datos para responder tu consulta. Más información en nuestra <a href="/privacidad" className="text-blue-400 underline underline-offset-2 hover:text-blue-300">Política de Privacidad</a>.</p>
             <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
               {isWhatsAppConfigured && (
                 <button

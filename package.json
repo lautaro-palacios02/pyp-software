@@ -7,14 +7,15 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start:api": "node server/index.js"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
     "lucide-react": "^1.28.0",
+    "nodemailer": "^10.0.13",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "resend": "^6.18.1",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
